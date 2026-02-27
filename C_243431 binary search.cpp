@@ -8,7 +8,7 @@ int main() {
     cin >> n;
 
     int arr[n];
-    cout << "Enter elements: ";
+    cout << "Enter elements (sorted): ";
     for(int i = 0; i < n; i++) {
         cin >> arr[i];
     }
@@ -16,11 +16,21 @@ int main() {
     cout << "Enter value to search: ";
     cin >> key;
 
+    int low = 0, high = n - 1;
     int pos = -1;
-    for(int i = 0; i < n; i++) {
-        if(arr[i] == key) {
-            pos = i;
+
+    while(low <= high) {
+        int mid = (low + high) / 2;
+
+        if(arr[mid] == key) {
+            pos = mid;
             break;
+        }
+        else if(arr[mid] < key) {
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
         }
     }
 
