@@ -1,0 +1,28 @@
+class Solution {
+public:
+    vector<string> ans;
+
+    void backtrack(string &s, int index) {
+        if (index == s.size()) {
+            ans.push_back(s);
+            return;
+        }
+
+        if (isdigit(s[index])) {
+            backtrack(s, index + 1);
+        } else {
+            // Lowercase
+            s[index] = tolower(s[index]);
+            backtrack(s, index + 1);
+
+            // Uppercase
+            s[index] = toupper(s[index]);
+            backtrack(s, index + 1);
+        }
+    }
+
+    vector<string> letterCasePermutation(string s) {
+        backtrack(s, 0);
+        return ans;
+    }
+};
